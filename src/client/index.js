@@ -5,9 +5,9 @@
 import $ from 'jquery'
 import page from 'page'
 import { getShows, searchShows } from 'src/tvmaze-api-client'
-import renderShows from 'src/render'
-import $tvShowsContainer from 'src/tv-shows-container'
-import 'src/search-form'
+import renderShows from 'src/client/render'
+import $tvShowsContainer from 'src/client/tv-shows-container'
+import 'src/client/search-form'
 import qs from 'qs'
 
 page('/', function (ctx, next) {
