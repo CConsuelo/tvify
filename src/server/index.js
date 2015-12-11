@@ -1,41 +1,27 @@
-var http  = require('http');
+import express from 'express';
 
-var assets = require('./assets.js');
+const app = express();
+const PORT = 3000;
 
-var server = http.createServer(function(request, response) {
-  var responseObj;
-  switch (request.url) {
-    case '/':
-      assets.serveStatic('index.html', function(err, content) {
-        if (err) {
-          console.log('Error: ' + err)
-        }
-        response.end(content);
-      });
-    break
-    case '/app.js':
-      assets.serveStatic('app.js', function(err, content) {
-        if (err) {
-          console.log('Error: ' + err)
-        }
-        response.end(content);
-      });
-    break
-    case '/app.css':
-      assets.serveStatic('app.css', function(err, content) {
-        if (err) {
-          console.log('Error: ' + err)
-        }
-        response.end(content);
-      });
-    break
-    default:
-      response.statusCode = 404;
-      response.end('Error 404');
-    break
+const votes = {};
+
+app.use(express.static('public'))
+
+// GET /votes
+app.get('/votes', (request, response) => {
+  response.json(votes)
+});
+
+// POST /vote/<id>
+app.post('/vote/:id', (request, response) => {
+  let id = request.params.id;
+  if (votes[id] === undefined) {
+    votes[id] = 1;
+  } else {
+    votes[id] += votes[id];
   }
 });
 
-server.listen(3000, function() {
-  console.log('Servidor iniciado en el puerto 3000');
-});
+app.listen(PORT, () => {
+  console.log('Servidor iniciado con express en el puerto ' + PORT);
+})

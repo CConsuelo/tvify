@@ -4,7 +4,7 @@
 
 import $ from 'jquery'
 import page from 'page'
-import { getShows, searchShows } from 'src/tvmaze-api-client'
+import { getShows, searchShows } from 'src/client/tvmaze-api-client'
 import renderShows from 'src/client/render'
 import $tvShowsContainer from 'src/client/tv-shows-container'
 import 'src/client/search-form'
