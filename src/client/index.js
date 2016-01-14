@@ -15,7 +15,7 @@ page('/', function (ctx, next) {
   if (!localStorage.shows) {
     getShows(function (shows) {
       $tvShowsContainer.find('.loader').remove();
-      localStorage.shows = JSON.stringify(shows);
+      //localStorage.shows = JSON.stringify(shows);
       renderShows(shows);
     })
   } else {
